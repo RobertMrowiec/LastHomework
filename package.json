@@ -1,0 +1,24 @@
+{
+  "name": "backendhomework",
+  "version": "0.0.1",
+  "description": "This is the application for manage party invitations",
+  "main": "inviteApp.js",
+  "scripts": {
+    "start": "node inviteApp.js",
+    "testMac": "mocha $(find . -name '*.test.js' ! -ipath '*node_modules*')",
+    "testWin": "mocha"
+  },
+  "author": "Robert Mrowiec",
+  "license": "ISC",
+  "dependencies": {
+    "body-parser": "^1.18.3",
+    "chai": "^4.1.2",
+    "chai-http": "^4.0.0",
+    "email-validator": "^2.0.3",
+    "express": "^4.16.3",
+    "mocha": "^5.2.0",
+    "surprise-cors": "^1.1.0",
+    "swagger-ui-express": "^3.0.9",
+    "uuid": "^3.2.1"
+  }
+}

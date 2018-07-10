@@ -1,0 +1,217 @@
+{
+  "openapi": "3.0.0",
+  "info": {
+    "version": "1.0.0",
+    "title": "Simple Invitation Service"
+  },
+  "servers": [
+    {
+      "url": "http://localhost:8020/api"
+    }
+  ],
+  "paths": {
+    "/invitations": {
+      "get": {
+        "summary": "List of all invitations",
+        "operationId": "GetInvitations",
+        "tags": [
+          "invitations"
+        ],
+        "responses": {
+          "200": {
+            "description": "List of all invitations",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Invitations"
+                }
+              }
+            }
+          }
+        }
+      },
+      "post": {
+        "summary": "Add an invitation",
+        "operationId": "PostInvitations",
+        "tags": [
+          "invitations"
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Invitations"
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "{ status: \"Added new invitation\", message: {} }"
+          }
+        }
+      }
+    },
+    "/invitations/:{_id}": {
+      "get": {
+        "summary": "Get invitation by ID",
+        "operationId": "GetInvitationById",
+        "tags": [
+          "invitations"
+        ],
+        "parameters": [
+          {
+            "name": "_id",
+            "in": "path",
+            "required": true,
+            "description": "_id of specific invitation",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Get invitation object by _id",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Invitations"
+                }
+              }
+            }
+          }
+        }
+      },
+      "put": {
+        "summary": "Edit an invitation by _id",
+        "operationId": "EditInvitation",
+        "tags": [
+          "invitations"
+        ],
+        "parameters": [
+          {
+            "name": "_id",
+            "in": "path",
+            "required": true,
+            "description": "_id of specific invitation",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Invitations"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Updated succesfully"
+          }
+        }
+      }
+    },
+    "/invitation/decline/:{_id}": {
+      "get": {
+        "summary": "Decline invitation status by _id",
+        "operationId": "DeclineInvitationStatusById",
+        "tags": [
+          "invitations"
+        ],
+        "parameters": [
+          {
+            "name": "_id",
+            "in": "path",
+            "required": true,
+            "description": "_id of specific invitation",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Changed specific object status do Declined",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Invitations"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/invitation/confirm/:{_id}": {
+      "get": {
+        "summary": "Confirm invitation status by _id",
+        "operationId": "ConfirmInvitationStatusById",
+        "tags": [
+          "invitations"
+        ],
+        "parameters": [
+          {
+            "name": "_id",
+            "in": "path",
+            "required": true,
+            "description": "_id of specific invitation",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Changed specific object status do Confirmed",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Invitations"
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "Invitation": {
+        "type": "object",
+        "required": [
+          "email",
+          "invitee"
+        ],
+        "properties": {
+          "_id": {
+            "type": "string"
+          },
+          "email": {
+            "type": "string"
+          },
+          "invitee": {
+            "type": "string"
+          },
+          "status": {
+            "type": "string"
+          }
+        }
+      },
+      "Invitations": {
+        "type": "array",
+        "items": {
+          "$ref": "#/components/schemas/Invitation"
+        }
+      }
+    }
+  }
+}
