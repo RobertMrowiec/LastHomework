@@ -25,7 +25,7 @@ I made functions for GET, ADD and UPDATE objects in this database.
 
 # Test
 
-npm test
+npm run testMac / npm run testWin ( based on OS )
 
 OR
 
